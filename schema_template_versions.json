@@ -1,0 +1,39 @@
+{
+  "$jsonSchema": {
+    "bsonType": "object",
+    "required": [
+      "templateId",
+      "version",
+      "docBytes",
+      "user",
+      "comment",
+      "lastUpdateTime"
+    ],
+    "additionalProperties": false,
+    "properties": {
+      "_id": {
+        "bsonType": "objectId"
+      },
+      "templateId": {
+        "bsonType": "string",
+        "description": "Identifier for the template document"
+      },
+      "version": {
+        "bsonType": "int"
+      },
+      "docBytes": {
+        "bsonType": "binData",
+        "description": "Must be raw BSON Binary data (e.g., Buffer or Binary object)"
+      },
+      "user": {
+        "bsonType": "string"
+      },
+      "comment": {
+        "bsonType": "string"
+      },
+      "lastUpdateTime": {
+        "bsonType": "date"
+      }
+    }
+  }
+}
