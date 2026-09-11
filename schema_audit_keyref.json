@@ -1,0 +1,30 @@
+{
+  "$jsonSchema": {
+    "bsonType": "object",
+    "required": ["keyrefId", "action", "notes", "user", "lastUpdateTime"],
+    "additionalProperties": false,
+    "properties": {
+      "_id": {
+        "bsonType": "objectId"
+      },
+      "keyrefId": {
+        "bsonType": "string",
+        "description": "Must be a string and is required"
+      },
+      "action": {
+        "bsonType": "string",
+        "description": "Must be a string and is required"
+      },
+      "notes": {
+        "bsonType": "string"
+      },
+      "user": {
+        "bsonType": "string"
+      },
+      "lastUpdateTime": {
+        "bsonType": "date",
+        "description": "Must be a valid BSON Date"
+      }
+    }
+  }
+}
