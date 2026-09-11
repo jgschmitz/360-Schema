@@ -1,0 +1,86 @@
+{
+  "$jsonSchema": {
+    "bsonType": "object",
+    "required": [
+      "typeName",
+      "documentType",
+      "sections",
+      "updatedAt",
+      "updatedBy",
+      "version"
+    ],
+    "additionalProperties": false,
+    "properties": {
+      "_id": {
+        "bsonType": "objectId"
+      },
+      "typeName": {
+        "bsonType": "string"
+      },
+      "documentType": {
+        "enum": ["DBD", "SBC"]
+      },
+      "updatedBy": {
+        "bsonType": "string"
+      },
+      "version": {
+        "bsonType": "int"
+      },
+      "updatedAt": {
+        "bsonType": "date"
+      },
+      "sections": {
+        "bsonType": "array",
+        "items": {
+          "bsonType": "object",
+          "required": [
+            "sectionKey",
+            "sectionName",
+            "sectionType",
+            "sequenceNo",
+            "required"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "sectionKey": { "bsonType": "string" },
+            "sectionName": { "bsonType": "string" },
+            "sectionType": {
+              "enum": [
+                "heading",
+                "text",
+                "richText",
+                "arrayGroup",
+                "costShare"
+              ]
+            },
+            "sequenceNo": { "bsonType": "int" },
+            "required": { "bsonType": "bool" },
+            "fields": {
+              "bsonType": "array",
+              "items": {
+                "bsonType": "object",
+                "required": [
+                  "fieldCode",
+                  "fieldName",
+                  "fieldType",
+                  "required",
+                  "sequenceNo"
+                ],
+                "additionalProperties": false,
+                "properties": {
+                  "fieldCode": { "bsonType": "string" },
+                  "fieldName": { "bsonType": "string" },
+                  "fieldType": {
+                    "enum": ["text", "richText"]
+                  },
+                  "required": { "bsonType": "bool" },
+                  "sequenceNo": { "bsonType": "int" }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
