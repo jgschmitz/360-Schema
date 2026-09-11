@@ -1,0 +1,88 @@
+{
+  "$jsonSchema": {
+    "bsonType": "object",
+    "required": [
+      "key",
+      "ruleId",
+      "valid",
+      "description",
+      "appName",
+      "subTenancy",
+      "root",
+      "updatedAt",
+      "updatedBy",
+      "version"
+    ],
+    "additionalProperties": false,
+    "properties": {
+      "_id": {
+        "bsonType": "objectId"
+      },
+      "key": {
+        "bsonType": "string"
+      },
+      "ruleId": {
+        "bsonType": "string"
+      },
+      "valid": {
+        "bsonType": "bool"
+      },
+      "description": {
+        "bsonType": "string"
+      },
+      "appName": {
+        "bsonType": "string"
+      },
+      "subTenancy": {
+        "bsonType": "string"
+      },
+      "updatedAt": {
+        "bsonType": "date"
+      },
+      "updatedBy": {
+        "bsonType": "string"
+      },
+      "version": {
+        "bsonType": "int"
+      },
+      "root": {
+        "$ref": "#/definitions/RuleNode"
+      }
+    },
+    "definitions": {
+      "RuleNode": {
+        "oneOf": [
+          { "$ref": "#/definitions/RuleGroupNode" },
+          { "$ref": "#/definitions/RuleConditionNode" }
+        ]
+      },
+      "RuleGroupNode": {
+        "bsonType": "object",
+        "required": ["id", "condition", "children"],
+        "additionalProperties": false,
+        "properties": {
+          "id": { "bsonType": "string" },
+          "condition": { "enum": ["and", "or"] },
+          "children": {
+            "bsonType": "array",
+            "items": {
+              "$ref": "#/definitions/RuleNode"
+            }
+          }
+        }
+      },
+      "RuleConditionNode": {
+        "bsonType": "object",
+        "required": ["id", "field", "operator", "type", "value"],
+        "additionalProperties": false,
+        "properties": {
+          "id": { "bsonType": "string" },
+          "field": { "bsonType": "string" },
+          "operator": { "bsonType": "string" },
+          "type": { "bsonType": "string" },
+          "value": { "bsonType": "string" }
+        }
+      }
+    }
+  }
+}
