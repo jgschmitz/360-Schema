@@ -1,0 +1,83 @@
+{
+  "$jsonSchema": {
+    "bsonType": "object",
+    "required": ["keyrefId", "version", "previousDoc", "user", "lastUpdateTime"],
+    "additionalProperties": false,
+    "properties": {
+      "_id": {
+        "bsonType": "objectId"
+      },
+      "keyrefId": {
+        "bsonType": "objectId",
+        "description": "Foreign key reference to the Keyref document"
+      },
+      "version": {
+        "bsonType": "int",
+        "description": "Version number of the snapshot"
+      },
+      "user": {
+        "bsonType": "string"
+      },
+      "lastUpdateTime": {
+        "bsonType": "date"
+      },
+      "previousDoc": {
+        "bsonType": "object",
+        "required": [
+          "key",
+          "variableName",
+          "appName",
+          "updatedAt",
+          "sourceSystem",
+          "subTenancy",
+          "sourceSystemService",
+          "updatedBy",
+          "version"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "key": { "bsonType": "string" },
+          "variableName": { "bsonType": "string" },
+          "appName": { "bsonType": "string" },
+          "updatedAt": { "bsonType": "date" },
+          "subTenancy": { "bsonType": "string" },
+          "sourceSystemService": { "bsonType": "string" },
+          "updatedBy": { "bsonType": "string" },
+          "version": { "bsonType": "int" },
+          "sourceSystem": {
+            "bsonType": "object",
+            "required": ["sourceSystemName", "sourceSystemInfo"],
+            "additionalProperties": false,
+            "properties": {
+              "sourceSystemName": {
+                "enum": ["Plan Library", "Nimbus", "Cirrus"]
+              },
+              "sourceSystemInfo": {
+                "bsonType": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "returnKey": { "bsonType": "string" },
+                  "id": { "bsonType": "string" },
+                  "paymentLineValue": { "bsonType": "string" },
+                  "tierNumber": { "bsonType": "string" },
+                  "defaultValue": { "bsonType": "string" },
+                  "benefitCategory": { "bsonType": "string" },
+                  "benefitCategoryDisplayName": { "bsonType": "string" },
+                  "limitTier": { "bsonType": "string" },
+                  "paymentLineDescription": { "bsonType": "string" },
+                  "limitType": { "bsonType": "string" },
+                  "appliesTo": { "bsonType": "string" },
+                  "limitType1": { "bsonType": "string" },
+                  "freqencyType": { "bsonType": "string" },
+                  "isCovered": { "bsonType": "string" },
+                  "paymentLineSplit": { "bsonType": "string" },
+                  "sourceSubSection": { "bsonType": "string" }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
