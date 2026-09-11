@@ -1,0 +1,190 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "TemplatesSampleCollection",
+  "type": "array",
+  "items": {
+    "$ref": "#/definitions/TemplateDoc"
+  },
+  "definitions": {
+    "TemplateDoc": {
+      "type": "object",
+      "properties": {
+        "key": { "type": "string" },
+        "fileName": { "type": "string" },
+        "title": { "type": "string" },
+        "templateTypeId": { "type": "string" },
+        "lob": { "type": "string" },
+        "state": { "type": "string" },
+        "subTenancy": { "type": "string" },
+        "parentId": { "type": "string" },
+        "xmlTemplatePath": { "type": "string" },
+        "resourceMetadataId": { "type": "string" },
+        "blocks": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/DocBlock" }
+        },
+        "conditionalVariants": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/ConditionalVariant" }
+        },
+        "costShares": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/CostShareTier" }
+        },
+        "ruleRefs": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "keyrefRefs": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "ruleBindings": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/RuleBinding" }
+        },
+        "updatedAt": { "$ref": "#/definitions/MongoDate" },
+        "updatedBy": { "type": "string" },
+        "version": { "type": "integer" }
+      },
+      "required": [
+        "key", "fileName", "title", "templateTypeId", "lob", "state",
+        "subTenancy", "parentId", "xmlTemplatePath", "resourceMetadataId", "blocks",
+        "costShares", "ruleRefs", "keyrefRefs", "ruleBindings", "updatedAt",
+        "updatedBy", "version"
+      ],
+      "additionalProperties": false
+    },
+
+    "DocBlock": {
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "text": { "type": "string" },
+        "label": { "type": "string" },
+        "sectionKey": { "type": "string" },
+        "html": { "type": "string" },
+        "fields": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/DocField" }
+        },
+        "rule": { "type": "string" },
+        "blocks": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/DocBlock" }
+        }
+      },
+      "required": ["id"],
+      "additionalProperties": false
+    },
+
+    "DocField": {
+      "type": "object",
+      "properties": {
+        "label": { "type": "string" },
+        "html": { "type": "string" }
+      },
+      "required": ["label", "html"],
+      "additionalProperties": false
+    },
+
+    "ConditionalVariant": {
+      "type": "object",
+      "properties": {
+        "ruleId": { "type": "string" },
+        "blocks": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/DocBlock" }
+        }
+      },
+      "required": ["ruleId", "blocks"],
+      "additionalProperties": false
+    },
+
+    "CostShareTier": {
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "tier": { "type": "string" },
+        "tierDescription": { "type": "string" },
+        "networkType": { "type": "string" },
+        "buckets": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/CostShareBucket" }
+        }
+      },
+      "required": ["id", "tier", "tierDescription", "networkType", "buckets"],
+      "additionalProperties": false
+    },
+
+    "CostShareBucket": {
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "mode": { "type": "string" },
+        "keyref": { "type": "string" },
+        "manualValue": { "type": "string" },
+        "manualMeta": { "$ref": "#/definitions/CostShareManualMeta" }
+      },
+      "required": ["id", "mode", "keyref", "manualValue", "manualMeta"],
+      "additionalProperties": false
+    },
+
+    "CostShareManualMeta": {
+      "type": "object",
+      "properties": {
+        "valueType": { "type": "string" },
+        "providerSpecialty": { "type": "string" },
+        "placeOfService": { "type": "string" },
+        "range": { "type": "null" },
+        "frequencyType": { "type": "string" },
+        "perOccurrenceDeductible": { "type": "string" },
+        "maximumCopay": { "type": "string" },
+        "minimumCopay": { "type": "string" },
+        "deductibleAppliesRef": { "type": "string" },
+        "authorization": { "type": "null" },
+        "referral": { "type": "null" },
+        "coveredServices": { "type": "array" }
+      },
+      "required": [
+        "valueType", "providerSpecialty", "placeOfService", "range",
+        "frequencyType", "perOccurrenceDeductible", "maximumCopay",
+        "minimumCopay", "deductibleAppliesRef", "authorization", "referral",
+        "coveredServices"
+      ],
+      "additionalProperties": false
+    },
+
+    "RuleBinding": {
+      "type": "object",
+      "properties": {
+        "condId": { "type": "string" },
+        "ruleId": { "type": "string" },
+        "expected": { "type": "boolean" },
+        "scope": {
+          "type": "string",
+          "enum": ["inline", "paragraph", "group", "variant"]
+        },
+        "blockId": { "type": "string" },
+        "fieldLabel": { "type": "string" },
+        "parentCondId": { "type": "string" },
+        "textPreview": { "type": "string" },
+        "keyrefRefs": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      },
+      "required": ["condId", "ruleId", "expected", "scope", "blockId", "textPreview", "keyrefRefs"],
+      "additionalProperties": false
+    },
+
+    "MongoDate": {
+      "type": "object",
+      "properties": {
+        "$date": { "type": "string", "format": "date-time" }
+      },
+      "required": ["$date"],
+      "additionalProperties": false
+    }
+  }
+}
