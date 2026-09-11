@@ -1,0 +1,94 @@
+{
+  "$jsonSchema": {
+    "bsonType": "object",
+    "required": [
+      "key",
+      "variableName",
+      "appName",
+      "updatedAt",
+      "sourceSystem",
+      "subTenancy",
+      "sourceSystemService",
+      "updatedBy",
+      "version"
+    ],
+    "additionalProperties": false,
+    "properties": {
+      "_id": {
+        "bsonType": "objectId"
+      },
+      "key": {
+        "bsonType": "string"
+      },
+      "variableName": {
+        "bsonType": "string"
+      },
+      "appName": {
+        "bsonType": "string"
+      },
+      "updatedAt": {
+        "bsonType": "date"
+      },
+      "subTenancy": {
+        "bsonType": "string"
+      },
+      "sourceSystemService": {
+        "bsonType": "string"
+      },
+      "updatedBy": {
+        "bsonType": "string"
+      },
+      "version": {
+        "bsonType": "int"
+      },
+      "sourceSystem": {
+        "bsonType": "object",
+        "required": ["sourceSystemName", "sourceSystemInfo"],
+        "additionalProperties": false,
+        "properties": {
+          "sourceSystemName": {
+            "enum": ["Plan Library", "Nimbus", "Cirrus"]
+          },
+          "sourceSystemInfo": {
+            "bsonType": "object",
+            "description": "Generic lookup bag; populated fields depend on the originating sheet (sourceSubSection).",
+            "additionalProperties": false,
+            "properties": {
+              "returnKey": { "bsonType": "string" },
+              "defaultValue": { "bsonType": "string" },
+              "sourceSubSection": {
+                "bsonType": "string",
+                "description": "Sheet/tab this row was authored in, e.g. 'planDetails', 'dentalPedDeductible', 'sheet1', 'Sheet 1'"
+              },
+              "tierNumber": { "bsonType": "string" },
+              "benefitCategory": { "bsonType": "string" },
+              "benefitCategoryDisplayName": { "bsonType": "string" },
+              "paymentLineValue": { "bsonType": "string" },
+              "paymentLineDescription": { "bsonType": "string" },
+              "paymentLineSplit": { "bsonType": "string" },
+              "limitTier": { "bsonType": "string" },
+              "limitType": { "bsonType": "string" },
+              "limitType1": { "bsonType": "string" },
+              "appliesTo": { "bsonType": "string" },
+              "freqencyType": { "bsonType": "string" },
+              "isCovered": { "bsonType": "string" },
+              "multiplyBy": { "bsonType": "string" },
+              "id": {
+                "bsonType": "string",
+                "description": "Cirrus/Nimbus mapping sheets only: source-system row id"
+              },
+              "fieldName": {
+                "bsonType": "string",
+                "description": "Cirrus 'sheet1' only: display label for the mapped field"
+              },
+              "returnValue": {
+                "bsonType": "string",
+                "description": "Cirrus 'sheet1' / Nimbus 'Sheet 1' only: literal/return value for this mapping row"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
