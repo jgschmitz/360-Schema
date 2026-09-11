@@ -1,0 +1,112 @@
+{
+  "$jsonSchema": {
+    "bsonType": "object",
+    "required": [
+      "mapName",
+      "key",
+      "templateRefs",
+      "templateConfig",
+      "updatedAt",
+      "updatedBy",
+      "version"
+    ],
+    "additionalProperties": false,
+    "properties": {
+      "_id": {
+        "bsonType": "objectId"
+      },
+      "mapName": {
+        "bsonType": "string"
+      },
+      "key": {
+        "bsonType": "string"
+      },
+      "updatedBy": {
+        "bsonType": "string"
+      },
+      "version": {
+        "bsonType": "int"
+      },
+      "updatedAt": {
+        "bsonType": "date"
+      },
+      "templateRefs": {
+        "bsonType": "array",
+        "items": {
+          "bsonType": "string"
+        }
+      },
+      "templateConfig": {
+        "bsonType": "object",
+        "required": [
+          "planId",
+          "resourceMetadataId",
+          "type",
+          "lob",
+          "planTypes",
+          "info",
+          "configInfo",
+          "searchConfig",
+          "searchConfigMap",
+          "resourceMetadata"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "planId": { "bsonType": "int" },
+          "resourceMetadataId": { "bsonType": "int" },
+          "type": { "bsonType": ["string", "null"] },
+          "lob": { "bsonType": "string" },
+          "planTypes": { "bsonType": "string" },
+          "info": { "bsonType": "string" },
+          "searchConfig": { "bsonType": "string" },
+          "resourceMetadata": { "bsonType": "array" },
+          "configInfo": {
+            "bsonType": "object",
+            "required": [
+              "id",
+              "path",
+              "info",
+              "ditaMapRuleFile",
+              "ditaMapStyle",
+              "ditaMapStyleName"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "id": { "bsonType": ["int", "null"] },
+              "path": { "bsonType": ["string", "null"] },
+              "info": { "bsonType": ["string", "null"] },
+              "ditaMapRuleFile": { "bsonType": "string" },
+              "ditaMapStyle": { "bsonType": "string" },
+              "ditaMapStyleName": { "bsonType": "string" }
+            }
+          },
+          "searchConfigMap": {
+            "bsonType": "array",
+            "items": {
+              "bsonType": "object",
+              "required": [
+                "state",
+                "mgSize",
+                "license",
+                "templateId",
+                "productYear",
+                "organization",
+                "fundingArrangement"
+              ],
+              "additionalProperties": false,
+              "properties": {
+                "state": { "bsonType": "string" },
+                "mgSize": { "bsonType": "string" },
+                "license": { "bsonType": "string" },
+                "templateId": { "bsonType": "string" },
+                "productYear": { "bsonType": "string" },
+                "organization": { "bsonType": "string" },
+                "fundingArrangement": { "bsonType": "string" }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
