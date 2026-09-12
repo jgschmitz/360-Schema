@@ -1,4 +1,4 @@
-# Database Schema & Collection Guide
+# Database Schema Collection Guide
 
 This repository contains native MongoDB `$jsonSchema` validation rules for 11 collections divided into three primary functional groups:
 
